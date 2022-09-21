@@ -20,6 +20,7 @@ namespace WindowsForms_TARpv21
         PictureBox pilt;
         ProgressBar riba;
         Timer aeg;
+        TextBox tekst;
         public MinuOmaVorm()
         {
             Height = 600;
@@ -35,10 +36,23 @@ namespace WindowsForms_TARpv21
             oksad.Nodes.Add(new TreeNode("Märkeruut"));
             oksad.Nodes.Add(new TreeNode("Radionupp"));
             oksad.Nodes.Add(new TreeNode("ProgressBar"));
-
+            oksad.Nodes.Add(new TreeNode("Tekstkast"));
+            oksad.Nodes.Add(new TreeNode("OmaVorm"));
             puu.AfterSelect += Puu_AfterSelect;
             puu.Nodes.Add(oksad);
+            puu.DoubleClick += Puu_DoubleClick;
             this.Controls.Add(puu);
+        }
+        private void Puu_DoubleClick(object sender, EventArgs e)
+        {
+            if (tekst.Enabled)
+            {
+                tekst.Enabled = false;
+            }
+            else
+            {
+                tekst.Enabled = true;
+            }
         }
 
         private void Puu_AfterSelect(object sender, TreeViewEventArgs e)
@@ -66,28 +80,28 @@ namespace WindowsForms_TARpv21
                 Width = 100,
                 Height = 25
             };
-            if (e.Node.Text=="Nupp")
+            if (e.Node.Text == "Nupp")
             {
-                nupp=new Button();
+                nupp = new Button();
                 nupp.Text = "Vajuta siia";
                 nupp.Height = 30;
                 nupp.Width = 100;
-                nupp.Location=new Point(200, 250);
+                nupp.Location = new Point(200, 250);
                 nupp.Click += Nupp_Click;
                 this.Controls.Add(nupp);
             }
 
-            else if(e.Node.Text=="Silt")
-            { 
+            else if (e.Node.Text == "Silt")
+            {
                 silt.MouseEnter += Silt_MouseEnter;
                 silt.MouseLeave += Silt_MouseLeave;
                 this.Controls.Add(silt);
             }
-            else if(e.Node.Text == "Dialog MessageBox")
+            else if (e.Node.Text == "Dialog MessageBox")
             {
                 MessageBox.Show("Siia kirjuta lause", "Kõike lihtsam aken");
-                var vastus = MessageBox.Show("Kas paneme aken kinni?", "Valik", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                if (vastus==DialogResult.Yes)
+                var vastus = MessageBox.Show("Kas paneme aken kinni?", "Valik", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (vastus == DialogResult.Yes)
                 {
                     this.Close();
                 }
@@ -96,7 +110,7 @@ namespace WindowsForms_TARpv21
                     MessageBox.Show("Siis töötama edasi", "Vastus oli NO");
                 }
             }
-            else if (e.Node.Text== "Märkeruut")
+            else if (e.Node.Text == "Märkeruut")
             {
                 mruut1.CheckedChanged += Mruut1_CheckedChanged;
                 mruut2.CheckedChanged += Mruut1_CheckedChanged;
@@ -104,38 +118,38 @@ namespace WindowsForms_TARpv21
                 this.Controls.Add(mruut2);
 
             }
-            else if (e.Node.Text=="Radionupp")
+            else if (e.Node.Text == "Radionupp")
             {
                 rnupp1 = new RadioButton
                 {
-                    Text="Paremale",
-                    Width=120,
-                    Location=new Point(mruut2.Left+mruut2.Width,mruut1.Height+mruut2.Height),
+                    Text = "Paremale",
+                    Width = 120,
+                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height),
                 };
                 rnupp2 = new RadioButton
                 {
                     Text = "Vasakule",
                     Width = 120,
-                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height+rnupp1.Width)
+                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height + rnupp1.Width)
                 };
                 rnupp3 = new RadioButton
                 {
                     Text = "Ülesse",
                     Width = 120,
-                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height+ rnupp1.Width+ rnupp2.Width)
+                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height + rnupp1.Width + rnupp2.Width)
                 };
                 rnupp4 = new RadioButton
                 {
                     Text = "Alla",
                     Width = 120,
-                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height+ rnupp1.Width+ rnupp2.Width+ rnupp3.Width)
+                    Location = new Point(mruut2.Left + mruut2.Width, mruut1.Height + mruut2.Height + rnupp1.Width + rnupp2.Width + rnupp3.Width)
                 };
                 pilt = new PictureBox
                 {
-                    Image=new Bitmap("BOMJ.jpeg"),
-                    Location=new Point(300,450),
-                    Size=new Size(100,100),
-                    SizeMode=PictureBoxSizeMode.Zoom
+                    Image = new Bitmap("BOMJ.jpeg"),
+                    Location = new Point(300, 450),
+                    Size = new Size(100, 100),
+                    SizeMode = PictureBoxSizeMode.Zoom
                 };
                 rnupp1.CheckedChanged += Rnupp_CheckedChanged;
                 rnupp2.CheckedChanged += Rnupp_CheckedChanged;
@@ -147,26 +161,51 @@ namespace WindowsForms_TARpv21
                 this.Controls.Add(rnupp4);
                 this.Controls.Add(pilt);
             }
-            else if (e.Node.Text=="ProgressBar")
+            else if (e.Node.Text == "ProgressBar")
             {
                 riba = new ProgressBar
-                { 
-                    Width=400,
-                    Height=30,
+                {
+                    Width = 400,
+                    Height = 30,
                     Location = new Point(350, 500),
-                    Value=50,
-                    Minimum=0,
-                    Maximum=100,
-                    Step=1,
-                    Dock=DockStyle.Bottom
+                    Value = 50,
+                    Minimum = 0,
+                    Maximum = 100,
+                    Step = 1,
+                    Dock = DockStyle.Bottom
                 };
                 aeg = new Timer();
                 aeg.Enabled = true;
                 aeg.Tick += Aeg_Tick;
                 this.Controls.Add(riba);
             }
+            else if (e.Node.Text == "Tekstkast")
+            {
+                tekst = new TextBox {
+                    Font = new Font("Arial", 34, FontStyle.Italic),
+                Location = new Point(350, 400),
+                Enabled = false
+                };
+                tekst.MouseDoubleClick += Tekst_MouseDoubleClick;
+                this.Controls.Add(tekst);
+            }
+            else if (e.Node.Text=="OmaVorm")
+            {
+                OmaVorm oma = new OmaVorm("Kuulame muusikat", "Vajuta siia", "Faili nimi");
+                oma.ShowDialog();
+            }
     }
-
+        private void Tekst_MouseDoubleClick(object sender, EventArgs e)
+        {
+            if (tekst.Enabled)
+            {
+                tekst.Enabled = false;
+            }
+            else
+            {
+                tekst.Enabled = true;
+            }
+        }
         private void Aeg_Tick(object sender,EventArgs e)
         {
             riba.PerformStep();
