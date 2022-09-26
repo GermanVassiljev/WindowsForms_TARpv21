@@ -8,16 +8,16 @@ using System.Windows.Forms;
 
 namespace WindowsForms_TARpv21
 {
-    public class OmaVorm : Form
+    public partial class OmaVorm : Form
     {
         public OmaVorm() { }
-        public OmaVorm(string Pealkiri, RadioButton Rmnupp, string Fail)
+        public OmaVorm(string Pealkiri, RadioButton Rmnupp1, string Fail)
         {
             this.ClientSize = new System.Drawing.Size(300, 300);
             this.Text = Pealkiri;
             RadioButton Rmnupp = new RadioButton
             {
-                Text = Rmnupp,
+                Text = "Megalovania",
                 Location = new System.Drawing.Point(50, 50),
                 Size = new System.Drawing.Size(100, 50),
                 BackColor = System.Drawing.Color.DarkRed
@@ -30,7 +30,7 @@ namespace WindowsForms_TARpv21
                 Size = new System.Drawing.Size(100, 50),
                 BackColor = System.Drawing.Color.DarkRed
             };
-            this.Controls.Add(nupp);
+            this.Controls.Add(Rmnupp1);
             this.Controls.Add(failinimi);
         }
         private void Nupp_Click(object sender, EventArgs e)

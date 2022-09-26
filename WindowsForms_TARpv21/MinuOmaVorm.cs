@@ -191,7 +191,7 @@ namespace WindowsForms_TARpv21
             }
             else if (e.Node.Text=="OmaVorm")
             {
-                OmaVorm oma = new OmaVorm("Kuulame muusikat", "Vajuta siia", "Faili nimi");
+                OmaVorm oma = new OmaVorm("Kuulame muusikat", , "Faili nimi");
                 oma.ShowDialog();
             }
     }
