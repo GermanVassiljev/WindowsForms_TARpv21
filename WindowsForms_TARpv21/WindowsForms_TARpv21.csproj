@@ -80,7 +80,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BOMJ.jpeg" />
+    <Content Include="kazahstan.wav" />
+    <Content Include="sans.jpg" />
     <Content Include="Undertale Megalovania Song Sound Effect.wav" />
+    <Content Include="Undertale-Papyrus.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
